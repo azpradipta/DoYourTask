@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.doyourtask.controller.MainMenuController">
+   <children>
+      <BorderPane layoutX="1.0" layoutY="1.0" prefHeight="479.0" prefWidth="792.0">
+         <left>
+            <VBox prefHeight="427.0" prefWidth="174.0" style="-fx-background-color: #6F5CC2;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#toTambahMatkul" prefHeight="60.0" prefWidth="174.0" style="-fx-background-color: #6F5CC2;" text="Tambah Mata Kuliah" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Task.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <stylesheets>
+                        <URL value="@styling.css" />
+                        <URL value="@../../../../java/com/example/doyourtask/stylingcss/styling.css" />
+                     </stylesheets>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#toTambahTugas" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #6F5CC2;" text="Tambah Tugas" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Bookmark.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <stylesheets>
+                        <URL value="@styling.css" />
+                        <URL value="@../../../../java/com/example/doyourtask/stylingcss/styling.css" />
+                     </stylesheets>
+                  </Button>
+                  <Button fx:id="riwayatTugas" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#toRiwayatTugas" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #6F5CC2;" text="Riwayat Tugas" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Time%20Machine.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <stylesheets>
+                        <URL value="@styling.css" />
+                        <URL value="@../../../../java/com/example/doyourtask/stylingcss/styling.css" />
+                     </stylesheets>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <TableView fx:id="tugasTableView" prefHeight="429.0" prefWidth="568.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="namaTugasColumn" prefWidth="214.39995419979095" text="Nama Tugas" />
+                <TableColumn fx:id="mataKuliahColumn" prefWidth="168.79998779296875" text="Mata Kuliah" />
+                  <TableColumn fx:id="tengatColumn" prefWidth="108.800048828125" text="Tengat" />
+                  <TableColumn fx:id="urgensiColumn" prefWidth="128.00003051757812" text="Urgensi" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <Pane prefHeight="51.0" prefWidth="792.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/Project.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="52.0" layoutY="15.0" prefHeight="17.0" prefWidth="139.0" text="Do Your Task" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="tugasSelesai" layoutX="746.0" layoutY="13.0" mnemonicParsing="false" onAction="#tugasSelesaiOnAction" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #3BB143;" />
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="755.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/Task%20Completed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
