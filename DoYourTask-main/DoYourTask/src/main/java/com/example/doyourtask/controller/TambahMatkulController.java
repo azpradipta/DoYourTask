@@ -1,7 +1,9 @@
 package com.example.doyourtask.controller;
 
+import com.example.doyourtask.model.MataKuliah;
+import com.example.doyourtask.model.MataKuliahData;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,32 +16,53 @@ public class TambahMatkulController {
     private TextField namaMataKuliahTextField;
 
     @FXML
-    private TableView<String> tabelMatkul;
+    private TableView<MataKuliah> tabelMatkul;
 
     @FXML
-    private TableColumn<String, String> TabelMatkul;
+    private TableColumn<MataKuliah, String> TabelMatkul;
 
-    private final ObservableList<String> mataKuliahList = FXCollections.observableArrayList();
+    private ObservableList<MataKuliah> mataKuliahList;
 
     @FXML
     public void initialize() {
-        TabelMatkul.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue()));
+        mataKuliahList = MataKuliahData.getInstance().getMataKuliahList();
+
+        TabelMatkul.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getNamaMataKuliah()));
         tabelMatkul.setItems(mataKuliahList);
+
+        // Set listener to save data whenever mataKuliahList changes
+        mataKuliahList.addListener((ListChangeListener<MataKuliah>) change -> {
+            while (change.next()) {
+                MataKuliahData.getInstance().saveMataKuliahData();
+            }
+        });
+
+        // Update this line to pass mataKuliahList directly
         TambahTugasController.setMataKuliahList(mataKuliahList);
     }
 
     @FXML
     private void tambahkanMatkulOnAction() {
-        String mataKuliah = namaMataKuliahTextField.getText();
-        if (!mataKuliah.isEmpty() && !mataKuliahList.contains(mataKuliah)) {
+        String namaMataKuliah = namaMataKuliahTextField.getText().trim();
+        if (!namaMataKuliah.isEmpty() && !isMataKuliahExist(namaMataKuliah)) {
+            MataKuliah mataKuliah = new MataKuliah(namaMataKuliah);
             mataKuliahList.add(mataKuliah);
             namaMataKuliahTextField.clear();
         }
     }
 
+    private boolean isMataKuliahExist(String namaMataKuliah) {
+        for (MataKuliah mataKuliah : mataKuliahList) {
+            if (mataKuliah.getNamaMataKuliah().equals(namaMataKuliah)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @FXML
     private void hapusMatkulOnAction() {
-        String selectedMataKuliah = tabelMatkul.getSelectionModel().getSelectedItem();
+        MataKuliah selectedMataKuliah = tabelMatkul.getSelectionModel().getSelectedItem();
         if (selectedMataKuliah != null) {
             mataKuliahList.remove(selectedMataKuliah);
         }

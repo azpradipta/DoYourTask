@@ -8,9 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.IOException;
 
 public class Main extends Application {
+
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
         // Load data
@@ -18,8 +19,7 @@ public class Main extends Application {
         RiwayatTugasData.getInstance().loadRiwayatTugasData();
         MataKuliahData.getInstance().loadMataKuliahData();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("mainmenu.fxml"));
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainmenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         stage.setTitle("Do Your Task");

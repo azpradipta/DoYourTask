@@ -7,7 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MataKuliahData {
+public class MataKuliahData implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static MataKuliahData instance = null;
     private final ObservableList<MataKuliah> mataKuliahList;
 
